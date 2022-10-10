@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,8 +19,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int DadoIzquierdo = Random().nextInt(6) + 1; // 0 - 5;
+  int DadoDerecho = Random().nextInt(6) + 1; // 0 - 5;
 
   @override
   Widget build(BuildContext context) {
@@ -34,19 +42,26 @@ class HomePage extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
+              child: TextButton(
+                onPressed: () {
+                  DadoIzquierdo = Random().nextInt(6) + 1; // 0 - 5
+
+                  setState(() {});
+                },
                 child: Image.asset(
-                  "assets/images/dice1.png",
+                  "assets/images/dice$DadoIzquierdo.png",
                 ),
               ),
               flex: 1,
             ),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
+              child: TextButton(
+                onPressed: () {
+                  DadoDerecho = Random().nextInt(6) + 1; // 0 - 5;
+                  setState(() {});
+                },
                 child: Image.asset(
-                  "assets/images/dice4.png",
+                  "assets/images/dice$DadoDerecho.png",
                 ),
               ),
               flex: 1,
